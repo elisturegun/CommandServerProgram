@@ -50,20 +50,20 @@ This project is a Linux-based command server program that facilitates communicat
    cd command-server
    
 2. **Compile the Program: Use the Makefile:**
-    bash
+    ```bash
     make
    
 3. **Run the Server: Start the server to listen for incoming client connections:**
-    bash
+    ```bash
     ./server
    
 5. **Run the Client: Launch the client in either interactive or batch mode:**
 
     **Interactive Mode:**
-    bash
+    ```bash
     ./client
     **Batch Mode:**
-    bash
+    ```bash
     ./client <input_file>
     
 ### Usage
@@ -73,12 +73,12 @@ This project is a Linux-based command server program that facilitates communicat
     Use quit to terminate the client session.
     
   **Batch Mode:**
-  Provide a file containing commands as input to the client.
-  Termination occurs automatically at the end of the input file.
+    Provide a file containing commands as input to the client.
+    Termination occurs automatically at the end of the input file.
   
   **Compound Commands:**
-  Use | to chain commands (e.g., ls | grep .txt).
-  The server creates unnamed pipes to handle such commands.
+    Use | to chain commands (e.g., ls | grep .txt).
+    The server creates unnamed pipes to handle such commands.
 
   **Server Termination:**
-  Use the quitall command to terminate all client connections and clean up resources.
+    Use the quitall command to terminate all client connections and clean up resources.
