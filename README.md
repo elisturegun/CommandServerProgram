@@ -63,9 +63,10 @@ This project is a Linux-based command server program that facilitates communicat
     ```bash
     ./client
     
-  **Batch Mode:**
+ **Batch Mode:**
     ```bash
     ./client <input_file>
+    
     
 ### Usage
   **Interactive Mode:**
