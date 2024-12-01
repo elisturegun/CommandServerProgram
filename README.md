@@ -1,27 +1,84 @@
-The project is a command server program providing
-communication and execution of multiple processes in a
-Linux environment. 
+# Command Server Program
 
-It involves the creation of a command server and a client system. The server executes
-the commands clients enter, and results are returned to
-clients. The server can handle concurrent connections
-from multiple clients. Each server-client interaction is
-enclosed within a child process. A message queue is used
-to establish connection. Afterwards, all connections between the client and the server are done through named
-pipes.
+This project is a Linux-based command server program that facilitates communication and execution of multiple processes. It implements a server-client architecture where the server executes commands received from clients and returns results. The server supports concurrent connections and utilizes inter-process communication mechanisms such as message queues and named pipes.
 
-Upon initiation, the server waits on a message queue
-for upcoming client connection requests. Once a client
-creates the message queue and the connection is established, if the client is in interactive mode, it asks the user
-to enter commands as single commands or compound
-commands. If the client is in batch mode, the commands
-are read from an input file. The single commands cause
-the creation of a runner child process that executes the
-command. Compound commands lead to creating an unnamed pipe for communication between runner processes
-executing each component of the compound commands.
+---
 
-The system supports termination mechanisms for
-clients. Clients can seek termination by quit command in
-non-batch mode. In batch mode, termination is done by
-the end of the input text file. Furthermore, quitall command leads the server to terminate all child processes and
-clean up resources afterward.
+## Features
+
+- **Server-Client Architecture**: The server communicates with clients through message queues and named pipes.
+- **Concurrent Connections**: Handles multiple client connections simultaneously using child processes.
+- **Command Execution**: 
+  - Executes single commands using runner child processes.
+  - Handles compound commands using unnamed pipes for communication between runner processes.
+- **Interactive and Batch Modes**:
+  - **Interactive Mode**: Clients can manually enter single or compound commands.
+  - **Batch Mode**: Clients can execute commands from an input file.
+- **Termination Mechanisms**:
+  - Clients can terminate with a `quit` command in interactive mode or at the end of the input file in batch mode.
+  - A `quitall` command terminates all child processes and cleans up server resources.
+
+---
+
+## System Architecture
+
+1. **Server**:
+   - Listens for incoming client connection requests on a message queue.
+   - Spawns child processes for handling commands and communicating with clients.
+   - Uses named pipes for all subsequent communication after the initial connection.
+2. **Client**:
+   - Connects to the server through a message queue.
+   - Operates in either:
+     - **Interactive Mode**: Users enter commands one by one.
+     - **Batch Mode**: Commands are read from a file.
+
+---
+
+## Installation and Setup
+
+### Prerequisites
+
+- Linux operating system.
+- GCC compiler for compiling C programs.
+- Basic knowledge of inter-process communication (IPC) in Linux.
+
+### Steps
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/<your-username>/command-server.git
+   cd command-server
+   
+2. **Compile the Program: Use the Makefile:**
+    bash
+    make
+   
+3. **Run the Server: Start the server to listen for incoming client connections:**
+    bash
+    ./server
+   
+5. **Run the Client: Launch the client in either interactive or batch mode:**
+
+    **Interactive Mode:**
+    bash
+    ./client
+    **Batch Mode:**
+    bash
+    ./client <input_file>
+    
+### Usage
+  **Interactive Mode:**
+
+    Enter commands directly in the client terminal.
+    Use quit to terminate the client session.
+    
+  **Batch Mode:**
+  Provide a file containing commands as input to the client.
+  Termination occurs automatically at the end of the input file.
+  
+  **Compound Commands:**
+  Use | to chain commands (e.g., ls | grep .txt).
+  The server creates unnamed pipes to handle such commands.
+
+  **Server Termination:**
+  Use the quitall command to terminate all client connections and clean up resources.
