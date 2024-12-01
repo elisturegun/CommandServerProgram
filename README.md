@@ -63,7 +63,7 @@ This project is a Linux-based command server program that facilitates communicat
     ```bash
       ./client
 **Batch Mode:**
-    ```bash
+    
       ./client <input_file>
     
     
