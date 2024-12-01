@@ -61,11 +61,11 @@ This project is a Linux-based command server program that facilitates communicat
 
     **Interactive Mode:**
     ```bash
-    ./client
+      ./client
     
  **Batch Mode:**
     ```bash
-    ./client <input_file>
+      ./client <input_file>
     
     
 ### Usage
